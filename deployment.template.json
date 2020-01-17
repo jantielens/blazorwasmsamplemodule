@@ -60,16 +60,6 @@
               "image": "${MODULES.BlazorWasmSampleModule}",
               "createOptions": {}
             }
-          },
-          "SimulatedTemperatureSensor": {
-            "version": "1.0",
-            "type": "docker",
-            "status": "running",
-            "restartPolicy": "always",
-            "settings": {
-              "image": "mcr.microsoft.com/azureiotedge-simulated-temperature-sensor:1.0",
-              "createOptions": {}
-            }
           }
         }
       }
@@ -78,8 +68,7 @@
       "properties.desired": {
         "schemaVersion": "1.0",
         "routes": {
-          "BlazorWasmSampleModuleToIoTHub": "FROM /messages/modules/BlazorWasmSampleModule/outputs/* INTO $upstream",
-          "sensorToBlazorWasmSampleModule": "FROM /messages/modules/SimulatedTemperatureSensor/outputs/temperatureOutput INTO BrokeredEndpoint(\"/modules/BlazorWasmSampleModule/inputs/input1\")"
+          "BlazorWasmSampleModuleToIoTHub": "FROM /messages/modules/BlazorWasmSampleModule/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
